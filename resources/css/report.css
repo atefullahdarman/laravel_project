@@ -1,0 +1,131 @@
+:root{
+   --primary: #218b8a;
+    --secondary: #2b9fb4;
+    --accent: #00c853;
+    --accent1:#15803d;
+    --danger: #b72826;
+    --red:#dc2626;
+    --light: #f5f5f5;
+    --dark: #212121;
+    --gray:#d7dbdfd2;
+    --orange1:#f59e0b;
+    --orange2:#c76f0a;
+    --radius: 0.6em;
+    --transition: 0.3s ease;
+}
+#report_photo{
+    width: 5em;
+    height: auto;
+}
+.report{
+    padding: 1.4em;
+    font-size:medium;
+}
+.report h2{
+    color: var(--primary);
+}
+.report ul li{
+    color: var(--secondary);
+}
+.cards{
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction:row;
+    gap: 2em;
+    justify-content:start;
+    flex-wrap: wrap;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding:0.6em;
+    border-radius: var(--radius);
+}
+.card{
+    width: 15em;
+}
+#card_h2{
+    text-align: center;
+    color: var(--primary);
+}
+.card h3{
+    color: var(--primary);
+}
+.card p{
+    color: var(--secondary);
+}
+#card_photo{
+    width: 4em;
+}
+#reportType{
+    background:linear-gradient(var(--danger),var(--light));
+    padding: 0.5em;
+    border-radius: var(--radius);
+    color:var(--dark);
+    font-weight: bold;
+}
+#reportType option{
+   background: var(--primary); 
+}
+.table-container{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    background:linear-gradient(var(--light),var(--gray));
+    padding:1em;
+    margin-bottom: 1em;
+    overflow-x: auto;
+}
+table{
+  font-size:1em;
+  width:100%;
+  border-collapse:collapse;
+  box-shadow: 0em 0.5em 1em var(--dark);
+  border-radius:var(--radius);
+}
+th{
+    padding: 0.5em 0.5em;
+    font-weight: bold;
+    background:linear-gradient(var(--primary),var(--secondary));
+    color:var(--light);   
+}
+td{
+  padding:0.5em 0.5em;
+  text-align:left;
+  color: var(--dark);
+  border-top:2px solid var(--gray);
+}
+tr:hover{
+  background:var(--gray);
+}
+.view-btn{
+    padding: 0.5em;
+    border: none;
+    background:var(--orange1);
+    width: 3.5em;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: bold;
+}
+.view-btn:hover{
+    background:var(--orange2);
+}
+.export-btn{
+    padding: 0.5em;
+    width: 6em;
+    border: none;
+    background:var(--accent);
+    width: 3.5em;
+    border-radius: var(--radius);
+    cursor: pointer; 
+    font-weight: bold;
+}
+.export-btn:hover{
+    background: var(--accent1);
+}
+@media (max-width: 35em) {
+    .cards{
+        display: flex;
+        justify-content: center;
+    }
+}

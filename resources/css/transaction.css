@@ -1,0 +1,181 @@
+:root{
+   --primary: #218b8a;
+    --secondary: #2b9fb4;
+    --accent: #00c853;
+    --accent1:#15803d;
+    --danger: #b72826;
+    --red:#dc2626;
+    --light: #f5f5f5;
+    --dark: #212121;
+    --gray:#d7dbdfd2;
+    --orange1:#f59e0b;
+    --orange2:#d97706;
+    --radius: 0.6em;
+    --transition: 0.3s ease;
+}
+/* table */
+.table-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    background:linear-gradient(var(--light),var(--gray));
+    padding:1em;
+    margin-bottom: 1em;
+    overflow-x: auto;
+}
+h2{
+    color: var(--primary);
+}
+#tran_photo{
+    width: 5em;
+    height: auto;
+}
+.li_transaction{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    color: var(--secondary);
+    font-size:medium;
+    list-style-type: none;
+    padding: 1em;
+    padding-right: 1.6em;
+    gap: 0.5em;   
+}
+table{
+  font-size:1em;
+  width:100%;
+  border-collapse:collapse;
+  box-shadow: 0em 0.5em 1em var(--dark);
+  border-radius:var(--radius);
+}
+td{
+  padding:0.5em 0.5em;
+  text-align:left;
+  color: var(--dark);
+  border-top:2px solid var(--gray);
+}
+th{
+   background:linear-gradient(var(--primary),var(--secondary));
+   padding: 0.5em 0.5em;
+   font-weight: bold;
+   color:var(--light);  
+}
+tr:hover{
+  background:var(--gray);
+}
+
+.form_class{
+    background:rgba(221, 215, 215, 0.872);
+    padding: 1em;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+    font-weight: bold;
+
+    justify-content: center;
+}
+input{
+    margin-top: 4px;
+    height: 25px;
+    border: 2px solid var(--primary);
+    border-radius: 5px;
+    padding: 4px;
+}
+select{
+    display: flex;
+    background:gray;
+    padding: 4.5px;
+    margin-top: 4px;
+    border-radius: 5px;
+}
+.btn_add{
+    color: black;
+    text-decoration: none;
+    padding: 0.5em;
+    border: none;
+    border-radius: var(--radius);
+    width: 10em;
+    cursor: pointer;
+    background:linear-gradient(var(--accent),var(--secondary));
+}
+.btn_add:hover{
+    background:var(--accent1);
+}
+.view-btn{
+    padding: 0.5em;
+    border: none;
+    background:var(--orange1);
+    width: 3.5em;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: bold;
+}
+.view-btn:hover{
+    background:var(--orange2);
+}
+.approve-btn{
+    padding: 0.5em;
+    width: 6em;
+    border: none;
+    background:var(--accent);
+    width: 3.5em;
+    border-radius: var(--radius);
+    cursor: pointer; 
+    font-weight: bold;
+}
+.approve-btn:hover{
+    background:var(--accent1);
+}
+.reject-btn{
+    padding: 0.5em;
+    border: none;
+    background:var(--red);
+    width:100%;
+    margin-top: 8px;
+    border-radius: var(--radius);
+    cursor: pointer; 
+    font-weight: bold; 
+}
+.reject-btn:hover{
+    background:var(--danger);
+}
+.show{
+    color: #212121;
+    text-decoration: none;
+    padding: 0.5em;
+    border: none;
+    border-radius: var(--radius);
+    width: 3em;
+    background:var(--accent);
+    width: 3.5em;
+    cursor: pointer;
+    font-weight:bold;
+}
+
+.show:hover{
+    background:var(--accent1);
+}
+
+.button{
+   color: #212121;
+    text-decoration: none;
+    padding: 0.5em;
+    border: none;
+    border-radius: var(--radius);
+    width: 3em;
+    background:var(--accent);
+    width:100%;
+    cursor: pointer;
+    margin-top: 3px;
+    font-weight:bold; 
+}
+
+.button:hover{
+    background:var(--accent1);
+}
+
+
+
