@@ -1,163 +1,158 @@
 <!DOCTYPE html>
 <html lang="ps" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <link rel="shortcut icon" href="./images/1.png"type="image/x-icon">
-  <meta name="description" content="this is bank static and degital system ">
-  <meta name="author" content="Atefullah">
-  <meta name="keywords" content="bank,online,transactions,money,account,loan,icons,report,customer">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> بانک مدیریت سیسټم </title>
-  
-  @vite('resources/css/style.css')
-  @vite('resources/css/account.css')
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ asset('images/1.png') }}" type="image/x-icon">
+    <meta name="description" content="Bank management system">
+    <meta name="author" content="Atefullah">
+    <meta name="keywords" content="bank, online, transactions, money, account, loan, customer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>د حسابونو مدیریت - بانک مدیریت سیسټم</title>
+    @vite('resources/css/style.css')
+    @vite('resources/css/account.css')
 </head>
+
 <body>
-    <main>      
-<!-- heder -->
+<main>
+    <!-- Header -->
     <header class="header">
-    <nav class="nav">
-      <!-- hambarger -->
-    <input type="checkbox" id="menu-toggle">
-    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+        <nav class="nav">
+            <!-- Hamburger -->
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
 
-    <a href="index.html"><img src="./images/symbols.png" alt="logo" id="logo"></a>
+            <!-- Logo -->
+            <a href="{{ route('index') }}"><img src="{{ asset('images/symbols.png') }}" alt="logo" id="logo"></a>
 
-    <ul class="menu">      
+            <!-- Menu -->
+            <ul class="menu">
                 <li><a href="{{ route('index') }}">کور پاڼه</a></li>
                 <li><a href="{{ route('accounts.index') }}">حسابونه</a></li>
-                <li><a href="{{ route('transactions.index') }}"> معاملې</a></li>
+                <li><a href="{{ route('transactions.index') }}">معاملې</a></li>
                 <li><a href="{{ route('customers.index') }}">مشتریان</a></li>
                 <li><a href="{{ route('loans.index') }}">پورونه</a></li>
-                <li><a href="{{ route('reports') }}"> راپورونه</a></li>
-                <li><a href="{{ route('about_me') }}"> زموږ په اړه</a></li>
-                <li><a href="{{ route('contact_as') }}"> موږ سره اړیکه</a></li>
+                <li><a href="{{ route('reports') }}">راپورونه</a></li>
+                <li><a href="{{ route('about_me') }}">زموږ په اړه</a></li>
+                <li><a href="{{ route('contact_as') }}">موږ سره اړیکه</a></li>
+            </ul>
+            <div class="buttons">
+                <button class="btn" id="btn1" type="button"><b>ننوتل</b></button>
+                <button class="btn" id="btn2" type="button"><b>وتل</b></button>
+            </div>
+        </nav>
+    </header>
+    <!-- Account information -->
+    <div class="h2_button_li">
+        <img src="{{ asset('images/check.png') }}" alt="Account photo" id="accout_photo">
+        <h2>د حسابونو مدیریت</h2>
+        <ul>
+            <li>اډمین او کارکوونکی کولی شي د مشتریانو حسابونه جوړ، تازه او یا حذف کړي.</li>
+            <li>هر حساب ځانګړی حساب نمبر لري.</li>
+            <li>مشتریان کولی شي د حساب بیالنس او حالت وګوري.</li>
+        </ul>
+        <a href="{{ route('accounts.create') }}" class="add-btn"><b>د نوي اکونټ اضافه ➕</b></a>
+    </div>
 
-    </ul>
-     <div class="buttons">
-        <button class="btn" id="btn1"><b>ننوتل</b></button>
-        <button class="btn" id="btn2"><b>وتل</b></button>
-    </div> 
-    </nav>
-</header>
+    <!-- Success and error messages -->
+    @if (session('success'))
+        <div class="alert-success" role="status">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="alert-error" role="alert">
+            <ul>
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
+    <!-- Accounts table -->
+    <section class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>اکونټ نمبر</th>
+                    <th>نوم</th>
+                    <th>ایمیل</th>
+                    <th>بیالنس</th>
+                    <th>حالت</th>
+                    <th>عمل</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($accounts as $account)
+                    <tr>
+                        <td>{{ $account['account_number'] ?? '' }}</td>
+                        <td>{{ $account['name'] ?? '' }}</td>
+                        <td>{{ $account['email'] ?? '' }}</td>
+                        <td>
+                            افغاني {{ number_format((float) ($account['balance'] ?? 0), 2) }}
+                        </td>
+                        <td>
+                            @if (($account['status'] ?? '') === 'active')
+                                فعال
+                            @elseif (($account['status'] ?? '') === 'inactive')
+                                غیر فعال
+                            @else
+                                {{ $account['status'] ?? '' }}
+                            @endif
+                        </td>
+                        <td class="button_edit_dele">
+                            <a href="{{ route('accounts.edit', $account['id']) }}"class="edit-btn"> تغیر</a>    
+                            <a href="{{ route('accounts.show', $account['id']) }}"class="show">  کتل</a>
+                            <form action="{{ route('accounts.destroy', $account['id']) }}"
+                                  method="POST"
+                                  style="display: inline;"
+                                  onsubmit="return confirm('ایا ډاډه یاست چې دا حساب حذف کړئ؟');">
+                                @csrf
+                                @method('DELETE')
 
-<div class="h2_button_li">
-  <img src="./images/check.png" alt="user_accont photo" id="accout_photo">
-  <h2> د  حسابونو مدیریت</h2>
-  <ul>
-    <li>اډمین او کارکوونکی کولی شی د مشتریانوحسابونه جوړ تازه اویا حذف کړی.</li>
-    <li>هر حساب به ځانګړی حساب نمبر لري .</li>
-    <li>مشتریان به کولی شي خپل حساب بیالنس او حالت په حقیقي وخت کې وګوري.</li>
-  </ul>
-  <button class="add-btn"><b>د نوی اکونت اضافه ➕</b></button>
-</div>
- 
-<section class="table-container">
-  <table>
-    <thead>
-      <tr>
-        <th>اکونت نمبر</th>
-        <th>نوم</th>
-        <th>ایمیل</th>
-        <th>بیالنس</th>
-        <th>حالت</th>
-        <th>عمل</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1000</td>
-          <td> عاطف الله</td>
-          <td>atefullahdarman@gmail.com</td>
-          <td>افغانی 90000</td>
-          <td> فعال</td>
-          <td class="button_edit_dele">
-            <button class="edit-btn">تغیر</button>
-            <button class="delete-btn">حذف</button>
-          </td>
-        </tr>
-        <tr>
-          <td>1001</td>
-          <td> بلال</td>
-          <td>bilal123@gmail.com</td>
-          <td>افغانی 50000</td>
-          <td> فعال</td>
-          <td>
-            <button class="edit-btn">تغیر</button>
-            <button class="delete-btn">حذف</button>
-          </td>
-        </tr>
-        <tr>
-          <td>1002</td>
-          <td>فرهاد</td>
-          <td>farhad111@gmail.com</td>
-          <td>افغانی 35000</td>
-          <td>غیر فعال</td>
-          <td>
-            <button class="edit-btn">تغیر</button>
-            <button class="delete-btn">حذف</button>
-          </td>
-        </tr>
-        <tr>
-          <td>1003</td>
-          <td>سمیم</td>
-          <td>samim222@gmail.com</td>
-          <td>افغانی 72000</td>
-          <td> فعال</td>
-          <td>
-            <button class="edit-btn">تغیر</button>
-            <button class="delete-btn">حذف</button>
-          </td>
-        </tr>
-        <tr>
-          <td>1004</td>
-          <td>علی</td>
-          <td>ali777@gmail.com</td>
-          <td>افغانی 7287</td>
-          <td>غیر فعال</td>
-          <td>
-            <button class="edit-btn">تغیر</button>
-            <button class="delete-btn">حذف</button>
-          </td>
-        </tr>
-        <tr>
-          <td>1005</td>
-          <td>نومان</td>
-          <td>nooma222@gmail.com</td>
-          <td>افغانی 8000</td>
-          <td>غیر فعال</td>
-          <td class="button">
-            <button class="edit-btn"  >تغیر</button>
-            <button class="delete-btn" >حذف</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-</section>
+                                <button type="submit" class="delete-btn"> حذف</button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="6">تر اوسه هېڅ حساب نه دی ثبت شوی.</td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </section>
 
-<!-- footer -->
-<footer class="footer">
-
-  <div class="Social_link">
-    <h4>سوشل میډیا لینکونه</h4> 
-    <ul>
-      <a href="https://www.facebook.com/profile.php?id=61581411182010&mibextid=rS40aB7S9Ucbxw6v"><li class="icone"><img src="./images/communication.png" alt="facebook" class="imge"></li></a>
-      <a href="https://youtube.com/@atefullahdarman2024?si=0NYU_P_U1NYrstaZ"><li class="icone"><img src="./images/youtube.png" alt="youtube" class="imge"></li></a>
-      <a href="https://www.linkedin.com/in/atefullah-zafar-zoy-2a7019399?utm_source=share_via&utm_content=profile&utm_medium=member_android"><li class="icone"><img src="./images/linkedin.png" alt="linkedin" class="imge"></li></a>
-      <a href="https://wa.me/93731597286"><li class="icone"><img src="./images/whatsapp.png" alt="whatsapp" class="imge"></li></a>
-    </ul>
-  </div>
-  <div class="Contact">
-    <h4>زموږ شره اړیکه ونیسی</h4> 
-    <p id="footer_p">Email: atefullahdarman@gmail.com</p>
-    <p id="footer_p">Phone: 0731507286</p>
-  </div>
-  <hr>
-  <div class="address">
-  <p>Copyrigth © 2026 Online Bank</p>
-  <p>ادرس : کندهار افغانستان</p>
-  </div>
-</footer>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="Social_link">
+            <h4>سوشل میډیا لینکونه</h4>
+            <ul>
+                <li class="icone">
+                    <a href="https://www.facebook.com/profile.php?id=61581411182010&mibextid=rS40aB7S9Ucbxw6v" target="_blank" rel="noopener noreferrer"><img src="{{ asset('images/communication.png') }}" alt="Facebook" class="imge"></a>
+                </li>
+                <li class="icone">
+                    <a href="https://youtube.com/@atefullahdarman2024?si=0NYU_P_U1NYrstaZ" target="_blank" rel="noopener noreferrer"><img src="{{ asset('images/youtube.png') }}" alt="YouTube" class="imge"></a>
+                </li>
+                <li class="icone">
+                    <a href="https://www.linkedin.com/in/atefullah-zafar-zoy-2a7019399" target="_blank" rel="noopener noreferrer"><img src="{{ asset('images/linkedin.png') }}" alt="LinkedIn" class="imge"></a>
+                </li>
+                <li class="icone">
+                    <a href="https://wa.me/93731597286" target="_blank" rel="noopener noreferrer"><img src="{{ asset('images/whatsapp.png') }}" alt="WhatsApp" class="imge"></a>
+                </li>
+            </ul>
+        </div>
+        <div class="Contact">
+            <h4>زموږ سره اړیکه ونیسئ</h4>
+            <p id="footer_p">Email: atefullahdarman@gmail.com</p>
+            <p id="footer_p">Phone: 0731507286</p>
+        </div>
+        <hr>
+        <div class="address">
+            <p>Copyright © 2026 Online Bank</p>
+            <p>ادرس: کندهار، افغانستان</p>
+        </div>
+    </footer>
 </main>
 </body>
 </html>
+ 

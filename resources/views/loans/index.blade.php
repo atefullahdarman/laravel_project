@@ -10,6 +10,7 @@
   <title> بانک مدیریت سیسټم </title>
   @vite('resources/css/style.css')
   @vite('resources/css/loans.css')
+  @vite('resources/css/account.css')
   @vite('resources/css/transaction.css')
 </head>
 <body>
@@ -75,7 +76,7 @@
             onclick="window.location.href='{{ route('loans.create') }}'">
             <b>نوی پور اضافه ➕</b>
         </button>
-<section class="table-container">
+
     <div style="margin-bottom: 20px;">
 
     </div>
@@ -299,11 +300,7 @@
 
     </table>
 
-</section>
-
-
 <footer class="footer">
-
     <div class="Social_link">
 
         <h4>سوشل میډیا لینکونه</h4>

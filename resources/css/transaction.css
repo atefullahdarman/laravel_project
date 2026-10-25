@@ -13,17 +13,27 @@
     --radius: 0.6em;
     --transition: 0.3s ease;
 }
+
+/* main contaner */
+.main_container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top:80px ;
+}
 /* table */
 .table-container{
-    width: 100%;
+
+    width: 50%;
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: wrap; 
     gap: 0.4em;
     background:linear-gradient(var(--light),var(--gray));
     padding:1em;
     margin-bottom: 1em;
     overflow-x: auto;
+    margin-left: 150px;
 }
 h2{
     color: var(--primary);

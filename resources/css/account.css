@@ -95,6 +95,23 @@ tr:hover{
     text-decoration: none;
 }
 
+.reject-btn{
+     color: #212121;
+    text-decoration: none;
+    padding: 0.5em;
+    border: none;
+    background:var(--red);
+    width: 3.5em;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-weight: bold;
+    margin-right: 6px;
+}
+
+.reject-btn:hover{
+    background:var(--danger);
+    text-decoration: none;
+}
 .show{
     color: #212121;
     text-decoration: none;

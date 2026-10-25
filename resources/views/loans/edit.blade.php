@@ -18,7 +18,6 @@
 <body>
 <main>
     <header class="header">
-
         <nav class="nav">
 
             <!-- Hamburger -->
@@ -66,8 +65,8 @@
         </nav>
 
     </header>
-
-<section class="form-container">
+<section class="main_container">   
+<section class="table-container">
 
     <h2>د پور معلومات تغیرول</h2>
 
@@ -164,10 +163,9 @@
     </form>
 
 </section>
-
+</section>
 </main>
 
 </body>
-
 </html>
 

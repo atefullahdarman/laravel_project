@@ -70,6 +70,7 @@
     </header>
 
 
+<section class="main_container">   
 <section class="table-container">
 
     <h2>د نوي پور غوښتنه</h2>
@@ -165,7 +166,7 @@
     </form>
 
 </section>
-
+</section>
 </main>
 
 </body>

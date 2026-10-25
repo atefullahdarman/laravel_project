@@ -1,183 +1,201 @@
 <!DOCTYPE html>
 <html lang="ps" dir="rtl">
 <head>
-  <meta charset="UTF-8">
-  <link rel="shortcut icon" href="./images/1.png"type="image/x-icon">
-  <meta name="description" content="this is bank static and degital system ">
-  <meta name="author" content="Atefullah">
-  <meta name="keywords" content="bank,online,transactions,money,account,loan,icons,report,customer">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> بانک مدیریت سیسټم </title>
-
-  @vite('resources/css/style.css')
-  @vite('resources/css/transaction.css')
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ asset('images/1.png') }}" type="image/x-icon">
+    <meta name="description" content="Bank management and digital transaction system">
+    <meta name="author" content="Atefullah">
+    <meta name="keywords" content="bank, online, transactions, money, account, loan, customer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>د معاملو مدیریت | بانک مدیریت سیسټم</title>
+    @vite([
+        'resources/css/style.css',
+        'resources/css/transaction.css'
+    ])
 </head>
 <body>
-    <main>      
-<!-- heder -->
+<main>
+
+    <!-- Header -->
     <header class="header">
-    <nav class="nav">
-      <!-- hambarger -->
-    <input type="checkbox" id="menu-toggle">
-    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+        <nav class="nav">
+            <!-- Hamburger -->
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
 
-    <a href="index.html"><img src="./images/symbols.png" alt="logo" id="logo"></a>
+            <!-- Logo -->
+            <a href="{{ route('index') }}">
+                <img
+                    src="{{ asset('images/symbols.png') }}"
+                    alt="logo"
+                    id="logo"></a>
 
-    <ul class="menu">      
+            <!-- Menu -->
+            <ul class="menu">
                 <li><a href="{{ route('index') }}">کور پاڼه</a></li>
                 <li><a href="{{ route('accounts.index') }}">حسابونه</a></li>
-                <li><a href="{{ route('transactions.index') }}"> معاملې</a></li>
+                <li><a href="{{ route('transactions.index') }}">معاملې</a></li>
                 <li><a href="{{ route('customers.index') }}">مشتریان</a></li>
                 <li><a href="{{ route('loans.index') }}">پورونه</a></li>
-                <li><a href="{{ route('reports') }}"> راپورونه</a></li>
-                <li><a href="{{ route('about_me') }}"> زموږ په اړه</a></li>
-                <li><a href="{{ route('contact_as') }}"> موږ سره اړیکه</a></li> 
+                <li><a href="{{ route('reports') }}">راپورونه</a></li>
+                <li><a href="{{ route('about_me') }}">زموږ په اړه</a></li>
+                <li><a href="{{ route('contact_as') }}">موږ سره اړیکه</a></li>
+            </ul>
 
-    </ul>
-    <div class="buttons">
-        <button class="btn" id="btn1"><b>ننوتل</b></button>
-        <button class="btn" id="btn2"><b>وتل</b></button>
-    </div> 
-    
-    </nav>
-</header>
+            <!-- Buttons -->
+            <div class="buttons">
+                <button
+                    type="button"
+                    class="btn"
+                    id="btn1"
+                    onclick="window.location.href='{{ route('login') }}'"><b>ننوتل</b></button>
+                <button
+                    type="button"
+                    class="btn"
+                    id="btn2"
+                    onclick="window.location.href='{{ route('login') }}'"><b>وتل</b></button>
+            </div>
+        </nav>
+    </header>
 
- <div class="li_transaction">
-  <img src="./images/transfer.png" alt="user_accont photo" id="tran_photo">
-  <h2> د معاملو مدیریت</h2>
-  <ul>
-      <li>امفلویی به د مشتریانو پیسی زخیره کو ی را ویباسی او انتقال کوی ي.</li>
-      <li>د هری معاملې وروسته به بیالنسونه په اتومات ډول نوی کیږی.</li>
-      <li>د بریالی معاملی وروسته به مشتری ته د ایمیل یا مسیج له لاری خبر ورکړل شي.</li>
-  </ul>
- </div>
-<section class="table-container">
-  <table>
-    <thead>
-      <tr>
-        <th>د معاملی ایډی</th>
-        <th>د اکونت نمبر</th>
-        <th>نوم</th>
-        <th>ډول</th>
-        <th>اندازه</th>
-        <th>تاریخ</th>
-        <th>حالتونه</th>
-        <th>عمل</th>
-      </tr>
-      </thead>
-      <tbody>
+    <!-- Transaction Information -->
+    <div class="li_transaction">
+        <img
+            src="{{ asset('images/transfer.png') }}"
+            alt="Transaction"
+            id="tran_photo"
+        >
+        <h2>د معاملو مدیریت</h2>
+        <ul>
+            <li>کارکوونکي د مشتریانو پیسې جمع کوي، باسي او انتقالوي.</li>
+            <li>د هرې معاملې وروسته باید د حساب بیلانس په سمه توګه تازه شي.</li>
+            <li>د بریالۍ معاملې وروسته مشتری ته د ایمیل یا پیغام له لارې خبر ورکول کېدای شي.</li>
+        </ul>
+    </div>
 
-      <tr>
-        <td>TX1001</td>
-        <td>1001</td>
-        <td>عاطف </td>
-        <td>زخیره کول</td>
-        <td>افغانی 10000</td>
-        <td>2026-03-09</td>
-        <td>بشپړ</td>
-        <td>
-          <button class="view-btn">کتل</button>
-          <button class="approve-btn">اجازه</button>
-          <button class="reject-btn">لغوه</button>
-        </td>
-      </tr>
+    <!-- Transactions Table -->
+    <section class="table-container">
+        <h2>د ټولو معاملو لېست</h2>
+        @if (session('success'))
+            <div class="success-message">
+                {{ session('success') }}
+            </div>
+        @endif
 
-      <tr>
-        <td>TX1002</td>
-        <td>1002</td>
-        <td>فرهاد</td>
-        <td>انتقال</td>
-        <td>افغانی 5000</td>
-        <td>2026-03-08</td>
-        <td>نا مکمل</td>
-        <td>
-          <button class="view-btn">کتل</button>
-          <button class="approve-btn">اجازه</button>
-          <button class="reject-btn">لغوه</button>
-        </td>
-      </tr>
-      <tr>
-        <td>TX1003</td>
-        <td>1003</td>
-        <td>بلال</td>
-        <td>زخیره کول</td>
-        <td>افغانی 20000</td>
-        <td>2026-03-07</td>
-        <td>بشپړ</td>
-        <td>
-          <button class="view-btn">کتل</button>
-          <button class="approve-btn">اجازه</button>
-          <button class="reject-btn">لغوه</button>
-        </td>
-      </tr>
-        <tr>
-        <td>TX1004</td>
-        <td>1004</td>
-        <td>عبید الله</td>
-        <td>انتقال</td>
-        <td>افغانی 10000</td>
-        <td>2026-07-07</td>
-        <td>نا مکمل</td>
-        <td>
-          <button class="view-btn">کتل</button>
-          <button class="approve-btn">اجازه</button>
-          <button class="reject-btn">لغوه</button>
-        </td>
-      </tr>
-      <tr>
-        <td>TX1005</td>
-        <td>1005</td>
-        <td>ذکی الله</td>
-        <td>ایستل</td>
-        <td>افغانی 12000</td>
-        <td>2026-05-10</td>
-        <td>بشپړ</td>
-        <td>
-          <button class="view-btn">کتل</button>
-          <button class="approve-btn">اجازه</button>
-          <button class="reject-btn">لغوه</button>
-        </td>
-      </tr>
-      <tr>
-        <td>TX1003</td>
-        <td>1003</td>
-        <td>شمس الرحمن</td>
-        <td>ذخیره</td>
-        <td>افغانی 70000</td>
-        <td>2026-09-09</td>
-        <td>نا مکمل</td>
-        <td>
-          <button class="view-btn">کتل</button>
-          <button class="approve-btn">اجازه</button>
-          <button class="reject-btn">لغوه</button>
-        </td>
-      </tr>
-      </tbody>
-    </table>
-</section>
+        @if ($errors->any())
+            <div class="error-message">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
 
-<!-- footer -->
-<footer class="footer">
-  <div class="Social_link">
-    <h4>سوشل میډیا لینکونه</h4>   
-    <ul>
-      <a href="https://www.facebook.com/profile.php?id=61581411182010&mibextid=rS40aB7S9Ucbxw6v"><li class="icone"><img src="./images/communication.png" alt="facebook" class="imge"></li></a>
-      <a href="https://youtube.com/@atefullahdarman2024?si=0NYU_P_U1NYrstaZ"><li class="icone"><img src="./images/youtube.png" alt="youtube" class="imge"></li></a>
-      <a href="https://www.linkedin.com/in/atefullah-zafar-zoy-2a7019399?utm_source=share_via&utm_content=profile&utm_medium=member_android"><li class="icone"><img src="./images/linkedin.png" alt="linkedin" class="imge"></li></a>
-      <a href="https://wa.me/93731597286"><li class="icone"><img src="./images/whatsapp.png" alt="whatsapp" class="imge"></li></a>
-    </ul>
-  </div>
-  <div class="Contact">
-    <h4>زموږ شره اړیکه ونیسی</h4> 
-    <p id="footer_p">Email: atefullahdarman@gmail.com</p>
-    <p id="footer_p">Phone: 0731507286</p>
-  </div>
-  <hr>
-  <div class="address">
-  <p>Copyrigth © 2026 Online Bank</p>
-  <p>ادرس : کندهار افغانستان</p>
-  </div>
-</footer>
+        <table>
+            <thead>
+                <tr>
+                    <th>د معاملې ایډي</th>
+                    <th>د حساب نمبر</th>
+                    <th>نوم</th>
+                    <th>ډول</th>
+                    <th>اندازه</th>
+                    <th>تاریخ</th>
+                    <th>حالت</th>
+                    <th>عمل</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @forelse ($transactions as $transaction)
+                    @php
+                        $types = [
+                            'deposit' => 'زېرمه کول',
+                            'withdrawal' => 'پیسې ایستل',
+                            'transfer' => 'انتقال',
+                        ];
+                        $statuses = [
+                            'completed' => 'بشپړ',
+                            'pending' => 'نا بشپړ',
+                            'rejected' => 'لغوه شوی',
+                        ];
+                        $transactionId = $transaction['id'] ?? '';
+                        $transactionType = $transaction['type'] ?? '';
+                        $transactionStatus = $transaction['status'] ?? '';
+                    @endphp
+                    <tr>
+                        <td>
+                            {{ $transaction['transaction_number'] ?? ('TX' . $transactionId) }}
+                        </td>
+                        <td>
+                            {{ $transaction['account_number'] ?? $transaction['account_id'] ?? '—' }}
+                        </td>
+                        <td>
+                            {{ $transaction['customer_name'] ?? $transaction['name'] ?? '—' }}
+                        </td>
+                        <td>
+                            {{ $types[$transactionType] ?? $transactionType }}
+                        </td>
+                        <td>
+                            افغانی {{ number_format((float) ($transaction['amount'] ?? 0), 2) }}
+                        </td>
+                        <td>
+                            {{ $transaction['date'] ?? '—' }}
+                        </td>
+                        <td>
+                            {{ $statuses[$transactionStatus] ?? $transactionStatus }}
+                        </td>
+                        <td>
+                            <a
+                                class="view-btn"
+                                href="{{ route('transactions.show', ['transaction' => $transactionId]) }}">
+                                کتل</a>
+                            @if ($transactionStatus === 'pending')
+                                <form
+                                    action="{{ route('transactions.update', ['transaction' => $transactionId]) }}"
+                                    method="POST"
+                                    style="display:inline;"
+                                    onsubmit="return confirm('ایا غواړې دا معامله لغوه کړې؟');">
+                                    @csrf
+                                    @method('PUT')
+                                    <input type="hidden" name="action" value="reject">
+                                    <button type="submit" class="reject-btn"> لغوه</button>
+                                </form>
+                            @else
+                                <span>—</span>
+                            @endif
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="8">
+                            تر اوسه هېڅ معامله ثبت شوې نه ده.
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+    </section>
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="Social_link">
+            <h4>د ټولنیزو رسنیو لینکونه</h4>
+            <ul>
+                <a href="https://www.facebook.com/profile.php?id=61581411182010&mibextid=rS40aB7S9Ucbxw6v"target="_blank"rel="noopener noreferrer"><li class="icone"><img src="{{ asset('images/communication.png') }}" alt="Facebook" class="imge">/li></a>
+                <a href="https://youtube.com/@atefullahdarman2024?si=0NYU_P_U1NYrstaZ"target="_blank"rel="noopener noreferrer"><li class="icone"><img src="{{ asset('images/youtube.png') }}" alt="YouTube" class="imge"></li></a>
+                <a href="https://www.linkedin.com/in/atefullah-zafar-zoy-2a7019399?utm_source=share_via&utm_content=profile&utm_medium=member_android"target="_blank"rel="noopener noreferrer">
+                <li class="icone"><img src="{{ asset('images/linkedin.png') }}" alt="LinkedIn" class="imge"></li></a><a href="https://wa.me/93731597286"target="_blank"rel="noopener noreferrer"><li class="icone"><img src="{{ asset('images/whatsapp.png') }}" alt="WhatsApp" class="imge"></li></a>
+            </ul>
+        </div>
+        <div class="Contact">
+            <h4>زموږ سره اړیکه ونیسئ</h4>
+            <p id="footer_p">Email: atefullahdarman@gmail.com</p>
+            <p id="footer_p">Phone: 0731507286</p>
+        </div>
+        <hr>
+        <div class="address">
+            <p>Copyright © 2026 Online Bank</p>
+            <p>آدرس: کندهار، افغانستان</p>
+        </div>
+    </footer>
 </main>
 </body>
 </html>

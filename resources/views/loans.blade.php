@@ -32,8 +32,6 @@
                 <li><a href="{{ route('reports') }}"> راپورونه</a></li>
                 <li><a href="{{ route('about_me') }}"> زموږ په اړه</a></li>
                 <li><a href="{{ route('contact_as') }}"> موږ سره اړیکه</a></li>  
-
-          
     </ul>
      <div class="buttons">
         <button class="btn" id="btn1"><b>ننوتل</b></button>

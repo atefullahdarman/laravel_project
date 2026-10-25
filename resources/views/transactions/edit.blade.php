@@ -2,184 +2,259 @@
 <html lang="ps" dir="rtl">
 
 <head>
-
     <meta charset="UTF-8">
-  <link rel="shortcut icon" href="./images/1.png"type="image/x-icon">
-  <meta name="description" content="this is bank static and degital system ">
-  <meta name="author" content="Atefullah">
-  <meta name="keywords" content="bank,online,transactions,money,account,loan,icons,report,customer">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> بانک مدیریت سیسټم </title>
-    @vite('resources/css/style.css')
-    @vite('resources/css/transaction.css')
+
+    <link rel="shortcut icon"
+          href="{{ asset('images/1.png') }}"
+          type="image/x-icon">
+
+    <meta name="description" content="Bank management and digital transaction system">
+    <meta name="author" content="Atefullah">
+    <meta name="keywords" content="bank, online, transactions, money, account, loan, customer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>د معاملې تغیر | بانک مدیریت سیسټم</title>
+
+    @vite([
+        'resources/css/style.css',
+        'resources/css/transaction.css'
+    ])
 </head>
+
 <body>
 <main>
 
+    <!-- Header -->
     <header class="header">
-
         <nav class="nav">
 
             <!-- Hamburger -->
             <input type="checkbox" id="menu-toggle">
 
-            <label for="menu-toggle"
-                   class="menu-icon">
+            <label for="menu-toggle" class="menu-icon">
                 &#9776;
             </label>
 
             <!-- Logo -->
             <a href="{{ route('index') }}">
-                <img src="{{ asset('images/symbols.png') }}"
-                     alt="logo"
-                     id="logo">
+                <img
+                    src="{{ asset('images/symbols.png') }}"
+                    alt="logo"
+                    id="logo"
+                >
             </a>
 
             <!-- Menu -->
             <ul class="menu">
-
-               <li><a href="{{ route('index') }}">کور پاڼه</a></li>
+                <li><a href="{{ route('index') }}">کور پاڼه</a></li>
                 <li><a href="{{ route('accounts.index') }}">حسابونه</a></li>
-                <li><a href="{{ route('transactions.index') }}"> معاملې</a></li>
+                <li><a href="{{ route('transactions.index') }}">معاملې</a></li>
                 <li><a href="{{ route('customers.index') }}">مشتریان</a></li>
                 <li><a href="{{ route('loans.index') }}">پورونه</a></li>
-                <li><a href="{{ route('reports') }}"> راپورونه</a></li>
-                <li><a href="{{ route('about_me') }}"> زموږ په اړه</a></li>
-                <li><a href="{{ route('contact_as') }}"> موږ سره اړیکه</a></li>
-
+                <li><a href="{{ route('reports') }}">راپورونه</a></li>
+                <li><a href="{{ route('about_me') }}">زموږ په اړه</a></li>
+                <li><a href="{{ route('contact_as') }}">موږ سره اړیکه</a></li>
             </ul>
 
             <!-- Buttons -->
             <div class="buttons">
-
-                <button class="btn" id="btn1">
+                <button
+                    type="button"
+                    class="btn"
+                    id="btn1"
+                    onclick="window.location.href='{{ route('login') }}'"
+                >
                     <b>ننوتل</b>
                 </button>
 
-                <button class="btn" id="btn2">
+                <button
+                    type="button"
+                    class="btn"
+                    id="btn2"
+                    onclick="window.location.href='{{ route('login') }}'"
+                >
                     <b>وتل</b>
                 </button>
-
             </div>
 
         </nav>
-
     </header>
-    <section class="table-container">
 
-        <h2>د معاملې تغیر</h2>
+    <!-- Edit Transaction -->
+    <section class="main_container">
+        <section class="table-container">
 
-        <!-- HTML only - database update not implemented -->
+            <h2>د معاملې معلومات تغیرول</h2>
 
-        <form class="form_class">
+            <!-- Success Message -->
+            @if (session('success'))
+                <div class="success-message">
+                    {{ session('success') }}
+                </div>
+            @endif
 
-            <label for="transaction_id">
-                د معاملې ID
-            </label>
+            <!-- Validation Errors -->
+            @if ($errors->any())
+                <div class="error-message">
+                    @foreach ($errors->all() as $error)
+                        <p>{{ $error }}</p>
+                    @endforeach
+                </div>
+            @endif
 
-            <input type="text"
-                   id="transaction_id"
-                   name="transaction_id"
-                   value="{{ $id ?? 'TX1001' }}">
+            <form
+                class="form_class"
+                action="{{ route('transactions.update', ['transaction' => $transaction['id']]) }}"
+                method="POST"
+            >
+                @csrf
+                @method('PUT')
 
+                <!-- Transaction ID -->
+                <label for="transaction_id">د معاملې نمبر</label>
 
-            <label for="account_number">
-                د اکونت نمبر
-            </label>
+                <input
+                    type="text"
+                    id="transaction_id"
+                    name="transaction_number"
+                    value="{{ old('transaction_number', $transaction['transaction_number'] ?? '') }}"
+                    readonly
+                >
 
-            <input type="text"
-                   id="account_number"
-                   name="account_number"
-                   value="1001">
+                <!-- Account ID -->
+                <label for="account_id">د حساب ID</label>
 
+                <input
+                    type="number"
+                    id="account_id"
+                    name="account_id"
+                    value="{{ old('account_id', $transaction['account_id'] ?? '') }}"
+                    min="1"
+                    required
+                >
 
-            <label for="name">
-                نوم
-            </label>
+                <!-- Account Number -->
+                <label for="account_number">د حساب نمبر</label>
 
-            <input type="text"
-                   id="name"
-                   name="name"
-                   value="عاطف">
+                <input
+                    type="text"
+                    id="account_number"
+                    name="account_number"
+                    value="{{ old('account_number', $transaction['account_number'] ?? '') }}"
+                    maxlength="50"
+                >
 
+                <!-- Customer Name -->
+                <label for="customer_name">د مشتری نوم</label>
 
-            <label for="type">
-                د معاملې ډول
-            </label>
+                <input
+                    type="text"
+                    id="customer_name"
+                    name="customer_name"
+                    value="{{ old('customer_name', $transaction['customer_name'] ?? $transaction['name'] ?? '') }}"
+                    maxlength="255"
+                    required
+                >
 
-            <select id="type" name="type">
+                <!-- Transaction Type -->
+                <label for="type">د معاملې ډول</label>
 
-                <option value="deposit" selected>
-                    زخیره کول
-                </option>
+                <select id="type" name="type" required>
+                    <option value="">د معاملې ډول انتخاب کړئ</option>
 
-                <option value="transfer">
-                    انتقال
-                </option>
+                    <option value="deposit"
+                        @selected(old('type', $transaction['type'] ?? '') === 'deposit')>
+                        زېرمه کول
+                    </option>
 
-                <option value="withdraw">
-                    ایستل
-                </option>
+                    <option value="transfer"
+                        @selected(old('type', $transaction['type'] ?? '') === 'transfer')>
+                        انتقال
+                    </option>
 
-            </select>
+                    <option value="withdrawal"
+                        @selected(old('type', $transaction['type'] ?? '') === 'withdrawal')>
+                        پیسې ایستل
+                    </option>
+                </select>
 
+                <!-- Amount -->
+                <label for="amount">د معاملې اندازه (افغانۍ)</label>
 
-            <label for="amount">
-                اندازه
-            </label>
+                <input
+                    type="number"
+                    id="amount"
+                    name="amount"
+                    value="{{ old('amount', $transaction['amount'] ?? '') }}"
+                    min="0.01"
+                    step="0.01"
+                    required
+                >
 
-            <input type="number"
-                   id="amount"
-                   name="amount"
-                   value="10000">
+                <!-- Date -->
+                <label for="date">تاریخ</label>
 
+                <input
+                    type="date"
+                    id="date"
+                    name="date"
+                    value="{{ old('date', $transaction['date'] ?? date('Y-m-d')) }}"
+                    required
+                >
 
-            <label for="date">
-                تاریخ
-            </label>
+                <!-- Description -->
+                <label for="description">تشریح</label>
 
-            <input type="date"
-                   id="date"
-                   name="date"
-                   value="2026-03-09">
+                <input
+                    type="text"
+                    id="description"
+                    name="description"
+                    value="{{ old('description', $transaction['description'] ?? '') }}"
+                    maxlength="1000"
+                    placeholder="د معاملې په اړه معلومات"
+                >
 
+                <!-- Status -->
+                <label for="status">د معاملې حالت</label>
 
-            <label for="status">
-                حالت
-            </label>
+                <select id="status" name="status" required>
+                    <option value="pending"
+                        @selected(old('status', $transaction['status'] ?? 'pending') === 'pending')>
+                        د تایید انتظار
+                    </option>
 
-            <select id="status" name="status">
+                    <option value="completed"
+                        @selected(old('status', $transaction['status'] ?? '') === 'completed')>
+                        بشپړه شوې
+                    </option>
 
-                <option value="complete" selected>
-                    بشپړ
-                </option>
+                    <option value="rejected"
+                        @selected(old('status', $transaction['status'] ?? '') === 'rejected')>
+                        رد شوې
+                    </option>
+                </select>
 
-                <option value="incomplete">
-                    نا مکمل
-                </option>
+                <br><br>
 
-            </select>
+                <!-- Update Button -->
+                <button type="submit" class="button">
+                    معلومات Update کول
+                </button>
 
+                <!-- Cancel Button -->
+                <button
+                    type="button"
+                    class="reject-btn"
+                    onclick="window.location.href='{{ route('transactions.index') }}'"
+                >
+                    لغوه
+                </button>
 
-            <br><br>
+            </form>
 
-            <button type="submit"  class="button"> 
-                معلومات Update کول
-            </button>
-
-
-            <button type="button" class="reject-btn"
-                    onclick="window.location.href='{{ route('transactions.index') }}'">
-
-                لغوه
-
-            </button>
-
-        </form>
-
+        </section>
     </section>
 
 </main>
-
 </body>
 </html>

@@ -17,7 +17,6 @@
 <body>
 <main>
     <header class="header">
-
         <nav class="nav">
 
             <!-- Hamburger -->
@@ -66,17 +65,12 @@
 
     </header>
 
+<section class="main_container">   
 <section class="table-container">
-
     <h2>د پور بشپړ معلومات</h2>
-
-
     <table>
-
         <thead>
-
             <tr>
-
                 <th>د پور نمبر</th>
 
                 <th>مشتری</th>
@@ -124,12 +118,9 @@
     </button>
 
 </section>
-
+</section>
 </main>
 
 </body>
-
 </html>
-
-
 
