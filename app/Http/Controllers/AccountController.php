@@ -6,14 +6,14 @@ use Illuminate\Support\Facades\File;
 
 class AccountController extends Controller
 {
-    //  * Location of the JSON file used to store accounts.
+    // file path
     private function filePath(): string
     {
         return storage_path('app/accounts.json');
     }
 
-    //  * Read accounts from the JSON file.
-    private function readAccounts(): array
+    // Read accounts from the json file.
+    private function readAccounts(): Array
     {
         $path = $this->filePath();
         if (!File::exists($path)) {
@@ -28,7 +28,7 @@ class AccountController extends Controller
         return is_array($accounts) ? $accounts : [];
     }
 
-    //  * Save accounts to the JSON file.
+    // Save accounts to the json file.
     private function saveAccounts(array $accounts): void
     {
         $json = json_encode(
@@ -59,13 +59,13 @@ class AccountController extends Controller
         return view('accounts.index', compact('accounts'));
     }
 
-    //  * Show the create-account form.
+    // create-account form.
     public function create()
     {
         return view('accounts.create');
     }
 
-    //  * Store a new account.    
+    // Store a new account.    
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -98,21 +98,23 @@ class AccountController extends Controller
         return redirect()->route('accounts.index')->with('success', 'Account created successfully.');
     }
 
-    //  * Display one account.
+    //  Display one account.
     public function show(string $id)
     {
+        
         $account = $this->findAccount($this->readAccounts(), $id);
         return view('accounts.show', compact('account'));
+
     }
 
-    //  * Show the edit-account form
+    // Show the edit-account form
     public function edit(string $id)
     {
         $account = $this->findAccount($this->readAccounts(), $id);
         return view('accounts.edit', compact('account'));
     }
 
-    //  * Update an existing account
+    // Update an existing account
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
@@ -124,7 +126,7 @@ class AccountController extends Controller
         ]);
         $accounts = $this->readAccounts();
 
-        // Return a 404 response if the requested account does not exist.
+        //  404  account does not exist.
         $this->findAccount($accounts, $id);
         foreach ($accounts as $account) {
             $isDifferentAccount = (string) ($account['id'] ?? '') !== $id;
@@ -154,7 +156,7 @@ class AccountController extends Controller
     public function destroy(string $id)
     {
         $accounts = $this->readAccounts();
-        // Return a 404 response if the requested account does not exist.
+        //404 requested account does not exist.
         $this->findAccount($accounts, $id);
         $filteredAccounts = array_values(
             array_filter(

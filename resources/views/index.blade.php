@@ -129,6 +129,7 @@
 
  @vite('resources/js/home.js')
  @vite('resources/js/customersAPI.js')
+ 
 </body>
 </html>
 

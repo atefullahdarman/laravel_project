@@ -4,6 +4,7 @@ use App\Http\Controllers\AccountController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\LoanController;
+use App\Http\Controllers\stdcontroller;
 
 // Login
 Route::get('/', function () {
@@ -14,11 +15,11 @@ Route::get('/', function () {
 Route::get('/index', function () {
     return view('index');})->name('index');
 
-/*
-|--------------------------------------------------------------------------
-| Static Pages
-|--------------------------------------------------------------------------
-*/
+
+
+// Route::get('/login2',function(){
+//     return view('login2');
+// });
 
 Route::get('/reports', function () {
     return view('reports');
@@ -32,11 +33,9 @@ Route::get('/contact_as', function () {
     return view('contact_as');
 })->name('contact_as');
 
-/*
-|--------------------------------------------------------------------------
-| Resource Routes
-|--------------------------------------------------------------------------
-*/
+
+// | Resource Routes
+
 
 // Accounts CRUD
 Route::resource('accounts', AccountController::class);
@@ -49,3 +48,4 @@ Route::resource('transactions', TransactionController::class);
 
 // Loans CRUD
 Route::resource('loans', LoanController::class);
+

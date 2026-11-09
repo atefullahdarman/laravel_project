@@ -1,386 +1,279 @@
 <!DOCTYPE html>
 <html lang="ps" dir="rtl">
+
 <head>
-  <meta charset="UTF-8">
-  <link rel="shortcut icon" href="./images/1.png"type="image/x-icon">
-  <meta name="description" content="this is bank static and degital system ">
-  <meta name="author" content="Atefullah">
-  <meta name="keywords" content="bank,online,transactions,money,account,loan,icons,report,customer">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title> بانک مدیریت سیسټم </title>
-  @vite('resources/css/style.css')
-  @vite('resources/css/loans.css')
-  @vite('resources/css/account.css')
-  @vite('resources/css/transaction.css')
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ asset('images/1.png') }}" type="image/x-icon">
+    <meta name="description" content="Bank management and digital loan system">
+    <meta name="author" content="Atefullah">
+    <meta name="keywords" content="bank, online, transactions, money, account, loan, customer">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>د پورونو مدیریت | بانک مدیریت سیسټم</title>
+     @vite([
+        'resources/css/style.css',
+        'resources/css/transaction.css',
+        'resources/css/account.css',
+        'resources/css/loans.css'
+    ])
 </head>
+
 <body>
-<main> 
-<!-- heder -->
+<main>
+
+    <!-- Header -->
     <header class="header">
-    <nav class="nav">
-      <!-- hambarger -->
-    <input type="checkbox" id="menu-toggle">
-    <label for="menu-toggle" class="menu-icon">&#9776;</label>
+        <nav class="nav">
 
-    <a href="index.html"><img src="./images/symbols.png" alt="logo" id="logo"></a>
+            <input type="checkbox" id="menu-toggle">
+            <label for="menu-toggle" class="menu-icon">&#9776;</label>
 
-    <ul class="menu">      
+            <a href="{{ route('index') }}">
+                <img src="{{ asset('images/symbols.png') }}" alt="logo" id="logo">
+            </a>
+
+            <ul class="menu">
                 <li><a href="{{ route('index') }}">کور پاڼه</a></li>
                 <li><a href="{{ route('accounts.index') }}">حسابونه</a></li>
-                <li><a href="{{ route('transactions.index') }}"> معاملې</a></li>
+                <li><a href="{{ route('transactions.index') }}">معاملې</a></li>
                 <li><a href="{{ route('customers.index') }}">مشتریان</a></li>
                 <li><a href="{{ route('loans.index') }}">پورونه</a></li>
-                <li><a href="{{ route('reports') }}"> راپورونه</a></li>
-                <li><a href="{{ route('about_me') }}"> زموږ په اړه</a></li>
-                <li><a href="{{ route('contact_as') }}"> موږ سره اړیکه</a></li>
-
-    </ul>
-    <div class="buttons">
-       <a href="./login.html"><button class="btn" id="btn1"><b>ننوتل</b></button></a>
-        <button class="btn" id="btn2"><b>وتل</b></button>
-    </div>   
-    </nav>
-</header>
-
-
-<div class="loan_section">
-
-    <img
-        src="{{ asset('images/loan.png') }}"
-        alt="loan photo"
-        id="loan"
-    >
-
-    <h2>د پور مدیریت</h2>
-
-    <ul>
-
-        <li>
-            مشتریان کولی شي د پور غوښتنه وکړي د اړینو معلوماتو په وړاندې کولو سره.
-        </li>
-
-        <li>
-            کارکوونکي به د پور غوښتنې وڅېړي او اډمین ته به یې واستوي.
-        </li>
-
-        <li>
-            اډمین به د اړتیا پر بنسټ د پور غوښتنه ومني یا رد کړي.
-        </li>
-
-    </ul>
-
-</div>
-
-<button
-            class="btn_add"
-            onclick="window.location.href='{{ route('loans.create') }}'">
-            <b>نوی پور اضافه ➕</b>
-        </button>
-
-    <div style="margin-bottom: 20px;">
-
-    </div>
-    <table>
-
-        <thead>
-
-            <tr>
-
-                <th>د پور نمبر</th>
-
-                <th>مشتری</th>
-
-                <th>اندازه</th>
-
-                <th>تاریخ</th>
-
-                <th>حالت</th>
-
-                <th>عمل</th>
-
-            </tr>
-
-        </thead>
-
-
-        <tbody>
-
-            <tr>
-
-                <td>L1001</td>
-
-                <td>عاطف</td>
-
-                <td>افغانی 50000</td>
-
-                <td>2026-03-09</td>
-
-                <td>انتظار کې</td>
-
-                <td>
-
-                    <button
-                        class="view-btn"
-                        onclick="window.location.href='{{ route('loans.show', ['loan' => 1]) }}'"
-                    >
-                        کتل
-                    </button>
-
-                    <button
-                        class="show"
-                        onclick="window.location.href='{{ route('loans.edit', ['loan' => 1]) }}'">
-                        تغیر
-                    </button>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>L1002</td>
-
-                <td>نومان</td>
-
-                <td>افغانی 35000</td>
-
-                <td>2026-03-08</td>
-
-                <td>قبول شو</td>
-
-                <td>
-
-                    <button
-                        class="view-btn"
-                        onclick="window.location.href='{{ route('loans.show', ['loan' => 2]) }}'"
-                    >
-                        کتل
-                    </button>
-
-                     <button
-                        class="show"
-                        onclick="window.location.href='{{ route('loans.edit', ['loan' => 1]) }}'">
-                        تغیر
-                    </button>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>L1003</td>
-
-                <td>ذکي الله</td>
-
-                <td>افغانی 72000</td>
-
-                <td>2026-03-07</td>
-
-                <td>لغوه</td>
-
-                <td>
-
-                    <button
-                        class="view-btn"
-                        onclick="window.location.href='{{ route('loans.show', ['loan' => 3]) }}'"
-                    >
-                        کتل
-                    </button>
-
-                     <button
-                        class="show"
-                        onclick="window.location.href='{{ route('loans.edit', ['loan' => 1]) }}'">
-                        تغیر
-                    </button>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>L1004</td>
-
-                <td>بلال</td>
-
-                <td>افغانی 30600</td>
-
-                <td>2026-07-11</td>
-
-                <td>قبول شو</td>
-
-                <td>
-
-                    <button
-                        class="view-btn"
-                        onclick="window.location.href='{{ route('loans.show', ['loan' => 4]) }}'"
-                    >
-                        کتل
-                    </button>
-
-                     <button
-                        class="show"
-                        onclick="window.location.href='{{ route('loans.edit', ['loan' => 1]) }}'">
-                        تغیر
-                    </button>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>L1005</td>
-
-                <td>فرهاد</td>
-
-                <td>افغانی 30000</td>
-
-                <td>2026-01-18</td>
-
-                <td>انتظار کې</td>
-
-                <td>
-
-                    <button
-                        class="view-btn"
-                        onclick="window.location.href='{{ route('loans.show', ['loan' => 5]) }}'"
-                    >
-                        کتل
-                    </button>
-
-                     <button
-                        class="show"
-                        onclick="window.location.href='{{ route('loans.edit', ['loan' => 1]) }}'">
-                        تغیر
-                    </button>
-
-                </td>
-
-            </tr>
-
-
-            <tr>
-
-                <td>L1006</td>
-
-                <td>عمران</td>
-
-                <td>افغانی 70000</td>
-
-                <td>2026-06-17</td>
-
-                <td>لغوه</td>
-
-                <td>
-
-                    <button
-                        class="view-btn"
-                        onclick="window.location.href='{{ route('loans.show', ['loan' => 6]) }}'"
-                    >
-                        کتل
-                    </button>
-
-                    <button
-                        class="show"
-                        onclick="window.location.href='{{ route('loans.edit', ['loan' => 1]) }}'">
-                        تغیر
-                    </button>
-
-                </td>
-
-            </tr>
-
-        </tbody>
-
-    </table>
-
-<footer class="footer">
-    <div class="Social_link">
-
-        <h4>سوشل میډیا لینکونه</h4>
+                <li><a href="{{ route('reports') }}">راپورونه</a></li>
+                <li><a href="{{ route('about_me') }}">زموږ په اړه</a></li>
+                <li><a href="{{ route('contact_as') }}">موږ سره اړیکه</a></li>
+            </ul>
+
+            <div class="buttons">
+                <button
+                    type="button"
+                    class="btn"
+                    id="btn1"
+                    onclick="window.location.href='{{ route('login') }}'">
+                    <b>ننوتل</b>
+                </button>
+
+                <button
+                    type="button"
+                    class="btn"
+                    id="btn2"
+                    onclick="window.location.href='{{ route('login') }}'">
+                    <b>وتل</b>
+                </button>
+            </div>
+
+        </nav>
+    </header>
+
+    <!-- Loan Information -->
+    <div class="loan_section">
+
+        <img
+            src="{{ asset('images/loan.png') }}"
+            alt="loan photo"
+            id="loan">
+
+        <h2>د پور مدیریت</h2>
 
         <ul>
-
-            <a href="https://www.facebook.com/">
-                <li class="icone">
-                    <img
-                        src="{{ asset('images/communication.png') }}"
-                        alt="facebook"
-                        class="imge"
-                    >
-                </li>
-            </a>
-
-            <a href="https://youtube.com/">
-                <li class="icone">
-                    <img
-                        src="{{ asset('images/youtube.png') }}"
-                        alt="youtube"
-                        class="imge"
-                    >
-                </li>
-            </a>
-
-            <a href="https://www.linkedin.com/">
-                <li class="icone">
-                    <img
-                        src="{{ asset('images/linkedin.png') }}"
-                        alt="linkedin"
-                        class="imge"
-                    >
-                </li>
-            </a>
-
-            <a href="https://wa.me/93731597286">
-                <li class="icone">
-                    <img
-                        src="{{ asset('images/whatsapp.png') }}"
-                        alt="whatsapp"
-                        class="imge"
-                    >
-                </li>
-            </a>
-
+            <li>مشتریان کولی شي د اړینو معلوماتو په وړاندې کولو سره د پور غوښتنه وکړي.</li>
+            <li>کارکوونکي د پور غوښتنې ارزوي او د تایید لپاره یې وړاندې کوي.</li>
+            <li>اډمین د اړتیا پر بنسټ د پور غوښتنه مني یا ردوي.</li>
         </ul>
 
     </div>
+    <h2>د پور غوښتنې</h2>
+    <!-- Messages -->
+    <section class="table-container">
 
+        
 
-    <div class="Contact">
+        @if (session('success'))
+            <div class="success-message">
+                {{ session('success') }}
+            </div>
+        @endif
 
-        <h4>زموږ سره اړیکه ونیسئ</h4>
+        @if (session('error'))
+            <div class="error-message">
+                {{ session('error') }}
+            </div>
+        @endif
 
-        <p id="footer_p">
-            Email: atefullahdarman@gmail.com
-        </p>
+        @if ($errors->any())
+            <div class="error-message">
+                @foreach ($errors->all() as $error)
+                    <p>{{ $error }}</p>
+                @endforeach
+            </div>
+        @endif
 
-        <p id="footer_p">
-            Phone: 0731507286
-        </p>
+        <div style="margin-bottom: 20px;">
+            <a href="{{ route('loans.create') }}" class="btn_add" style="margin-top: 20px;"> 
+                <b>نوی پور اضافه ➕</b>
+            </a>
+        </div>
 
-    </div>
+        <!-- Loans Table -->
+        <table>
+            <caption><b>د پورونو لېست</b></caption>
 
-    <hr>
+            <thead>
+                <tr>
+                    <th>د پور نمبر</th>
+                    <th>مشتری</th>
+                    <th>اندازه</th>
+                    <th>تاریخ</th>
+                    <th>حالت</th>
+                    <th>عملیات</th>
+                </tr>
+            </thead>
 
-    <div class="address">
+            <tbody>
+                @forelse ($loans as $loan)
 
-        <p>Copyright © 2026 Online Bank</p>
+                    @php
+                        $loanId = $loan['id'];
 
-        <p>ادرس: کندهار افغانستان</p>
+                        $loanNumber = $loan['loan_number']
+                            ?? ('L' . str_pad((string) $loanId, 4, '0', STR_PAD_LEFT));
 
-    </div>
+                        $customerName = $loan['customer_name']
+                            ?? $loan['name']
+                            ?? '—';
 
-</footer>
+                        $amount = (float) ($loan['amount'] ?? 0);
+
+                        $date = $loan['date']
+                            ?? $loan['application_date']
+                            ?? '—';
+
+                        $status = $loan['status'] ?? 'pending';
+
+                        $statusLabels = [
+                            'pending' => 'د تایید انتظار',
+                            'approved' => 'تایید شوی',
+                            'accepted' => 'منل شوی',
+                            'rejected' => 'رد شوی',
+                        ];
+
+                        $displayStatus = $statusLabels[$status] ?? $status;
+                    @endphp
+
+                    <tr>
+                        <td>{{ $loanNumber }}</td>
+
+                        <td>{{ $customerName }}</td>
+
+                        <td>{{ number_format($amount, 2) }} افغانۍ</td>
+
+                        <td>{{ $date }}</td>
+
+                        <td>{{ $displayStatus }}</td>
+
+                        <td>
+                            <!-- View -->
+                            <a class="view-btn" style="margin-left: 5px; color: black; text-decoration: none;"
+                                href="{{ route('loans.show', ['loan' => $loanId]) }}"
+                                >
+                                کتل
+                            </a>
+
+                            <!-- Edit -->
+                            <a
+                                href="{{ route('loans.edit', ['loan' => $loanId]) }}"
+                                class="show">
+                                تغیر
+                            </a>
+
+                            <!-- Approve and Reject -->
+                            @if ($status === 'pending')
+
+                            @endif
+
+                            <!-- Delete -->
+                            <form
+                                action="{{ route('loans.destroy', ['loan' => $loanId]) }}"
+                                method="POST"
+                                style="display: inline;"
+                                onsubmit="return confirm('ایا په یقین سره دا پور حذف کول غواړئ؟');">
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit" class="reject-btn">
+                                    حذف
+                                </button>
+                            </form>
+                        </td>
+                    </tr>
+
+                @empty
+                    <tr>
+                        <td colspan="6">
+                            تر اوسه د پورونو معلومات نه دي ثبت شوي.
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+
+        <div class="Social_link">
+            <h4>سوشل میډیا لینکونه</h4>
+
+            <ul>
+                <li class="icone">
+                    <a href="https://www.facebook.com/profile.php?id=61581411182010&mibextid=rS40aB7S9Ucbxw6v"
+                       target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('images/communication.png') }}"
+                             alt="Facebook" class="imge">
+                    </a>
+                </li>
+
+                <li class="icone">
+                    <a href="https://youtube.com/@atefullahdarman2024"
+                       target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('images/youtube.png') }}"
+                             alt="YouTube" class="imge">
+                    </a>
+                </li>
+
+                <li class="icone">
+                    <a href="https://www.linkedin.com/in/atefullah-zafar-zoy-2a7019399/"
+                       target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('images/linkedin.png') }}"
+                             alt="LinkedIn" class="imge">
+                    </a>
+                </li>
+
+                <li class="icone">
+                    <a href="https://wa.me/93731597286"
+                       target="_blank" rel="noopener noreferrer">
+                        <img src="{{ asset('images/whatsapp.png') }}"
+                             alt="WhatsApp" class="imge">
+                    </a>
+                </li>
+            </ul>
+        </div>
+
+        <div class="Contact">
+            <h4>زموږ سره اړیکه ونیسئ</h4>
+            <p id="footer_p">Email: atefullahdarman@gmail.com</p>
+            <p id="footer_p">Phone: 0731507286</p>
+        </div>
+
+        <hr>
+
+        <div class="address">
+            <p>Copyright © 2026 Online Bank</p>
+            <p>پته: کندهار، افغانستان</p>
+        </div>
+
+    </footer>
 
 </main>
-
 </body>
-
 </html>
-
